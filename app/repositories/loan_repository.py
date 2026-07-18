@@ -16,11 +16,9 @@ class LoanRepository:
 
     def remove_loan(self, loan_id):
         loan = self.find_loan_by_id(loan_id)
-
         if loan:
             self.loans.remove(loan)
             return True
-
         return False
 
     def update_loan(self, loan_id, updated_loan):
@@ -28,6 +26,5 @@ class LoanRepository:
             if loan.loan_id == loan_id:
                 self.loans[index] = updated_loan
                 return True
-
         return False
     
