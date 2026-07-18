@@ -18,3 +18,14 @@ class Book:
         self.publication_year = publication_year
         self.total_copies = total_copies
         self.available_copies = available_copies
+
+    def __str__(self):
+        return (
+            f"{self.book_id} | "
+            f"{self.title} | "
+            f"{self.author} | "
+            f"ISBN: {self.isbn} | "
+            f"Category: {self.category} | "
+            f"Published: {self.publication_year} | "
+            f"Available: {self.available_copies}/{self.total_copies}"
+        ) 

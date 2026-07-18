@@ -1,62 +1,105 @@
 from app.models.book import Book
-from app.models.member import Member
-from app.models.loan import Loan
 from app.services.library_service import LibraryService
+
+
+def display_menu():
+    print("\n========== Library Management System ==========")
+    print("1. Add Book")
+    print("2. View All Books")
+    print("3. Search Book")
+    print("4. Remove Book")
+    print("5. Exit")
+
+
+def add_book(library):
+    print("\nAdd New Book")
+
+    book_id = input("Book ID: ")
+    title = input("Title: ")
+    author = input("Author: ")
+    isbn = input("ISBN: ")
+    category = input("Category: ")
+    publication_year = input("Publication Year: ")
+    total_copies = int(input("Total Copies: "))
+
+    book = Book(
+        book_id,
+        title,
+        author,
+        isbn,
+        category,
+        publication_year,
+        total_copies,
+        total_copies,
+    )
+
+    library.add_book(book)
+
+    print("\nBook added successfully.")
+
+
+def view_books(library):
+    books = library.get_all_books()
+
+    if not books:
+        print("\nNo books available.")
+        return
+
+    print("\n========== Books ==========")
+
+    for book in books:
+        print(book)
+
+
+def search_book(library):
+    book_id = input("\nEnter Book ID: ")
+
+    book = library.find_book_by_id(book_id)
+
+    if book:
+        print("\nBook Found:")
+        print(book)
+    else:
+        print("\nBook not found.")
+
+
+def remove_book(library):
+    book_id = input("\nEnter Book ID to remove: ")
+
+    if library.remove_book(book_id):
+        print("\nBook removed successfully.")
+    else:
+        print("\nBook not found.")
 
 
 def main():
     library = LibraryService()
 
     while True:
-        print("\n===== Library Management System =====")
-        print("1. Add Book")
-        print("2. View Books")
-        print("3. Exit")
+        display_menu()
 
-        choice = input("Enter your choice: ")
+        choice = input("\nEnter your choice: ")
 
         if choice == "1":
-            book_id = input("Book ID: ")
-            title = input("Title: ")
-            author = input("Author: ")
-            isbn = input("ISBN: ")
-            category = input("Category: ")
-            publication_year = input("Publication Year: ")
-            total_copies = int(input("Total Copies: "))
-
-            book = Book(
-                book_id,
-                title,
-                author,
-                isbn,
-                category,
-                publication_year,
-                total_copies,
-                total_copies,
-            )
-
-            library.add_book(book)
-            print("Book added successfully!")
+            add_book(library)
 
         elif choice == "2":
-            books = library.get_all_books()
-
-            if not books:
-                print("No books available.")
-            else:
-                print("\nBooks:")
-                for book in books:
-                    print(
-                        f"{book.book_id} | {book.title} | {book.author} | Available: {book.available_copies}/{book.total_copies}"
-                    )
+            view_books(library)
 
         elif choice == "3":
-            print("Thank you for using the Library Management System.")
+            search_book(library)
+
+        elif choice == "4":
+            remove_book(library)
+
+        elif choice == "5":
+            print("\nThank you for using Library Management System.")
             break
 
         else:
-            print("Invalid choice. Try again.")
+            print("\nInvalid choice. Please try again.")
 
 
 if __name__ == "__main__":
     main()
+

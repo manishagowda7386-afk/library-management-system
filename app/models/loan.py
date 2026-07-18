@@ -18,3 +18,16 @@ class Loan:
         self.return_date = return_date
         self.fine = fine
         self.returned = returned
+
+    def __str__(self):
+        status = "Returned" if self.returned else "Borrowed"
+
+        return (
+            f"Loan ID: {self.loan_id} | "
+            f"Book ID: {self.book_id} | "
+            f"Member ID: {self.member_id} | "
+            f"Issue Date: {self.issue_date} | "
+            f"Due Date: {self.due_date} | "
+            f"Status: {status} | "
+            f"Fine: ₹{self.fine}"
+        )
