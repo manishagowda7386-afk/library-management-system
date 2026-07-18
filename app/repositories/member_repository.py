@@ -16,11 +16,9 @@ class MemberRepository:
 
     def remove_member(self, member_id):
         member = self.find_member_by_id(member_id)
-
         if member:
             self.members.remove(member)
             return True
-
         return False
 
     def update_member(self, member_id, updated_member):
@@ -28,5 +26,4 @@ class MemberRepository:
             if member.member_id == member_id:
                 self.members[index] = updated_member
                 return True
-
         return False
