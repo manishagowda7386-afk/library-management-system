@@ -23,11 +23,19 @@ class BookRepository:
 
         return False
 
-    def update_book(self, book_id, updated_book):
+    def update_book(self, updated_book):
         for index, book in enumerate(self.books):
-            if book.book_id == book_id:
+            if book.book_id == updated_book.book_id:
                 self.books[index] = updated_book
                 return True
 
         return False
+
+    def is_book_available(self, book_id):
+        book = self.find_book_by_id(book_id)
+
+        if book is None:
+            return False
+
+        return book.available_copies > 0
         
