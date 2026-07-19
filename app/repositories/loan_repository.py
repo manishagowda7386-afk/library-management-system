@@ -8,23 +8,30 @@ class LoanRepository:
     def get_all_loans(self):
         return self.loans
 
-    def find_loan_by_id(self, loan_id):
+    def find_loan(self, member_id, book_id):
         for loan in self.loans:
-            if loan.loan_id == loan_id:
+            if (
+                loan.member_id == member_id
+                and loan.book_id == book_id
+                and not loan.returned
+            ):
                 return loan
         return None
 
-    def remove_loan(self, loan_id):
-        loan = self.find_loan_by_id(loan_id)
+    def remove_loan(self, member_id, book_id):
+        loan = self.find_loan(member_id, book_id)
+
         if loan:
             self.loans.remove(loan)
             return True
+
         return False
 
-    def update_loan(self, loan_id, updated_loan):
-        for index, loan in enumerate(self.loans):
-            if loan.loan_id == loan_id:
-                self.loans[index] = updated_loan
-                return True
-        return False
-    
+    def get_member_loans(self, member_id):
+        member_loans = []
+
+        for loan in self.loans:
+            if loan.member_id == member_id:
+                member_loans.append(loan)
+
+        return member_loans
