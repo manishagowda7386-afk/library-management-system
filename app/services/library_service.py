@@ -16,7 +16,4 @@ class LibraryService:
 
     def remove_book(self, book_id):
         return self.book_repository.remove_book(book_id)
-
-    def update_book(self, book_id, updated_book):
-        return self.book_repository.update_book(book_id, updated_book)
         
