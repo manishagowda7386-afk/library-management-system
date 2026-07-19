@@ -1,52 +1,63 @@
-from app.repositories.loan_repository import LoanRepository
 from app.models.loan import Loan
 
 
 class LoanService:
-    def __init__(self):
-        self.loan_repository = LoanRepository()
+    def __init__(self, loan_repository, book_repository, member_repository):
+        self.loan_repository = loan_repository
+        self.book_repository = book_repository
+        self.member_repository = member_repository
 
-    def issue_book(
-        self,
-        loan_id,
-        book,
-        member,
-        issue_date,
-        due_date,
-    ):
+    def issue_book(self, member_id, book_id):
+        member = self.member_repository.find_member_by_id(member_id)
+        if member is None:
+            return False, "Member not found."
+
+        book = self.book_repository.find_book_by_id(book_id)
+        if book is None:
+            return False, "Book not found."
+
         if book.available_copies <= 0:
-            return False
+            return False, "No copies available."
 
-        loan = Loan(
-            loan_id,
-            book.book_id,
-            member.member_id,
-            issue_date,
-            due_date,
-        )
+        for loan in self.loan_repository.get_all_loans():
+            if (
+                loan.member_id == member_id
+                and loan.book_id == book_id
+                and not loan.returned
+            ):
+                return False, "Member already has this book."
+
+        loan = Loan(member_id, book_id)
 
         self.loan_repository.add_loan(loan)
 
         book.available_copies -= 1
 
-        return True
+        return True, "Book issued successfully."
 
-    def return_book(self, loan_id, book):
-        loan = self.loan_repository.find_loan_by_id(loan_id)
+    def return_book(self, member_id, book_id):
+        loans = self.loan_repository.get_all_loans()
 
-        if loan is None:
-            return False
+        for loan in loans:
+            if (
+                loan.member_id == member_id
+                and loan.book_id == book_id
+                and not loan.returned
+            ):
+                loan.returned = True
 
-        if loan.returned:
-            return False
+                book = self.book_repository.find_book_by_id(book_id)
+                if book:
+                    book.available_copies += 1
 
-        loan.returned = True
-        book.available_copies += 1
+                return True, "Book returned successfully."
 
-        return True
+        return False, "Loan not found."
 
-    def get_all_loans(self):
-        return self.loan_repository.get_all_loans()
+    def get_active_loans(self):
+        active_loans = []
 
-    def find_loan_by_id(self, loan_id):
-        return self.loan_repository.find_loan_by_id(loan_id)
+        for loan in self.loan_repository.get_all_loans():
+            if not loan.returned:
+                active_loans.append(loan)
+        return active_loans
