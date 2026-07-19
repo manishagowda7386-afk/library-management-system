@@ -1,41 +1,36 @@
-class BookRepository:
+class MemberRepository:
     def __init__(self):
-        self.books = []
+        self.members = []
 
-    def add_book(self, book):
-        self.books.append(book)
+    def add_member(self, member):
+        self.members.append(member)
 
-    def get_all_books(self):
-        return self.books
+    def get_all_members(self):
+        return self.members
 
-    def find_book_by_id(self, book_id):
-        for book in self.books:
-            if book.book_id == book_id:
-                return book
+    def find_member_by_id(self, member_id):
+        for member in self.members:
+            if member.member_id == member_id:
+                return member
         return None
 
-    def remove_book(self, book_id):
-        book = self.find_book_by_id(book_id)
+    def remove_member(self, member_id):
+        member = self.find_member_by_id(member_id)
 
-        if book:
-            self.books.remove(book)
+        if member:
+            self.members.remove(member)
             return True
 
         return False
 
-    def update_book(self, updated_book):
-        for index, book in enumerate(self.books):
-            if book.book_id == updated_book.book_id:
-                self.books[index] = updated_book
+    def update_member(self, updated_member):
+        for index, member in enumerate(self.members):
+            if member.member_id == updated_member.member_id:
+                self.members[index] = updated_member
                 return True
 
         return False
 
-    def is_book_available(self, book_id):
-        book = self.find_book_by_id(book_id)
-
-        if book is None:
-            return False
-
-        return book.available_copies > 0
+    def member_exists(self, member_id):
+        return self.find_member_by_id(member_id) is not None
         
