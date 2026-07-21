@@ -1,36 +1,30 @@
-class MemberRepository:
+from app.utils.json_handler import JsonHandler
+
+
+class BookRepository:
+    FILE_PATH = "data/books.json"
+
     def __init__(self):
-        self.members = []
+        self.books = JsonHandler.load_data(self.FILE_PATH)
 
-    def add_member(self, member):
-        self.members.append(member)
+    def add_book(self, book):
+        self.books.append(book.__dict__)
+        JsonHandler.save_data(self.FILE_PATH, self.books)
 
-    def get_all_members(self):
-        return self.members
+    def get_all_books(self):
+        return self.books
 
-    def find_member_by_id(self, member_id):
-        for member in self.members:
-            if member.member_id == member_id:
-                return member
+    def find_book_by_id(self, book_id):
+        for book in self.books:
+            if book["book_id"] == book_id:
+                return book
         return None
 
-    def remove_member(self, member_id):
-        member = self.find_member_by_id(member_id)
-
-        if member:
-            self.members.remove(member)
-            return True
-
-        return False
-
-    def update_member(self, updated_member):
-        for index, member in enumerate(self.members):
-            if member.member_id == updated_member.member_id:
-                self.members[index] = updated_member
+    def remove_book(self, book_id):
+        for book in self.books:
+            if book["book_id"] == book_id:
+                self.books.remove(book)
+                JsonHandler.save_data(self.FILE_PATH, self.books)
                 return True
-
         return False
-
-    def member_exists(self, member_id):
-        return self.find_member_by_id(member_id) is not None
         
