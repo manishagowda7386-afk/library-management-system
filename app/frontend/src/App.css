@@ -5,9 +5,8 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
   background: #071522;
-  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .app {
@@ -17,29 +16,30 @@ body {
 
 .sidebar {
   width: 270px;
-  background: linear-gradient(180deg, #0d3b8f, #08295f);
-  padding: 25px 18px;
+  background: linear-gradient(180deg, #0c46a8, #08295d);
+  color: white;
+  padding: 25px;
   display: flex;
   flex-direction: column;
 }
 
 .logo {
   display: flex;
-  align-items: center;
   gap: 15px;
+  align-items: center;
   margin-bottom: 45px;
 }
 
 .logo-icon {
-  font-size: 42px;
+  font-size: 45px;
 }
 
 .logo h2 {
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .logo p {
-  color: #d9e6ff;
+  color: #d4e2ff;
 }
 
 .menu {
@@ -49,44 +49,93 @@ body {
 }
 
 .menu-item {
-  padding: 16px 18px;
+  padding: 15px;
   border-radius: 12px;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 18px;
+  transition: .3s;
 }
 
 .menu-item:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,.1);
 }
 
 .active {
-  background: #1f6fff;
+  background: #1b74ff;
 }
 
 .logout {
   margin-top: auto;
-  padding: 16px;
-  border: none;
+  padding: 15px;
   border-radius: 12px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
+  border: none;
   cursor: pointer;
-  font-size: 18px;
+  background: rgba(255,255,255,.12);
+  color: white;
 }
 
 .content {
   flex: 1;
-  padding: 45px;
+  padding: 35px;
 }
 
-.content h1 {
-  font-size: 46px;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.content p {
-  color: #b8c4d4;
-  margin-top: 10px;
-  font-size: 18px;
+.topbar h1 {
+  color: white;
+  font-size: 40px;
+}
+
+.search {
+  background: white;
+  width: 320px;
+  padding: 12px 18px;
+  border-radius: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.cards {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+
+.card {
+  padding: 28px;
+  border-radius: 18px;
+  color: white;
+  box-shadow: 0 15px 25px rgba(0,0,0,.2);
+}
+
+.card h2 {
+  margin: 18px 0;
+  font-size: 38px;
+}
+
+.blue {
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.green {
+  background: linear-gradient(135deg,#10b981,#34d399);
+}
+
+.purple {
+  background: linear-gradient(135deg,#7c3aed,#8b5cf6);
+}
+
+.red {
+  background: linear-gradient(135deg,#ef4444,#f87171);
 }

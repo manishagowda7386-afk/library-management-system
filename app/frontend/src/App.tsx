@@ -6,6 +6,7 @@ function App() {
       <aside className="sidebar">
         <div className="logo">
           <div className="logo-icon">📚</div>
+
           <div>
             <h2>Library</h2>
             <p>Management System</p>
@@ -14,21 +15,51 @@ function App() {
 
         <nav className="menu">
           <div className="menu-item active">🏠 Dashboard</div>
-          <div className="menu-item">📖 Books</div>
+          <div className="menu-item">📚 Books</div>
           <div className="menu-item">👥 Members</div>
           <div className="menu-item">🔄 Loans</div>
-          <div className="menu-item">📊 Reports</div>
+          <div className="menu-item">📈 Reports</div>
           <div className="menu-item">⚙ Settings</div>
-          <div className="menu-item">💾 Backup</div>
-          <div className="menu-item">ℹ About</div>
         </nav>
 
         <button className="logout">Logout</button>
       </aside>
 
       <main className="content">
-        <h1>Dashboard</h1>
-        <p>Welcome back, Admin!</p>
+        <header className="topbar">
+          <h1>Dashboard</h1>
+
+          <div className="search">
+            🔍
+            <input type="text" placeholder="Search..." />
+          </div>
+        </header>
+
+        <div className="cards">
+          <div className="card blue">
+            <h3>Total Books</h3>
+            <h2>1250</h2>
+            <p>+12 this week</p>
+          </div>
+
+          <div className="card green">
+            <h3>Members</h3>
+            <h2>420</h2>
+            <p>+8 this week</p>
+          </div>
+
+          <div className="card purple">
+            <h3>Active Loans</h3>
+            <h2>96</h2>
+            <p>Currently Issued</p>
+          </div>
+
+          <div className="card red">
+            <h3>Overdue</h3>
+            <h2>12</h2>
+            <p>Needs Attention</p>
+          </div>
+        </div>
       </main>
     </div>
   );
