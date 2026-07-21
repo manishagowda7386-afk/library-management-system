@@ -1,29 +1,29 @@
+from app.utils.json_handler import JsonHandler
+
+
 class MemberRepository:
+    FILE_PATH = "data/members.json"
+
     def __init__(self):
-        self.members = []
+        self.members = JsonHandler.load_data(self.FILE_PATH)
 
     def add_member(self, member):
-        self.members.append(member)
+        self.members.append(member.__dict__)
+        JsonHandler.save_data(self.FILE_PATH, self.members)
 
     def get_all_members(self):
         return self.members
 
     def find_member_by_id(self, member_id):
         for member in self.members:
-            if member.member_id == member_id:
+            if member["member_id"] == member_id:
                 return member
         return None
 
     def remove_member(self, member_id):
-        member = self.find_member_by_id(member_id)
-        if member:
-            self.members.remove(member)
-            return True
-        return False
-
-    def update_member(self, member_id, updated_member):
-        for index, member in enumerate(self.members):
-            if member.member_id == member_id:
-                self.members[index] = updated_member
+        for member in self.members:
+            if member["member_id"] == member_id:
+                self.members.remove(member)
+                JsonHandler.save_data(self.FILE_PATH, self.members)
                 return True
         return False
