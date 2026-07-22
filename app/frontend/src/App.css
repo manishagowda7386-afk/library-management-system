@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #071522;
+  background: #eef4fb;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -14,11 +14,13 @@ body {
   min-height: 100vh;
 }
 
+/* ================= SIDEBAR ================= */
+
 .sidebar {
   width: 270px;
-  background: linear-gradient(180deg, #0c46a8, #08295d);
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
   color: white;
-  padding: 25px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
 }
@@ -27,56 +29,62 @@ body {
   display: flex;
   gap: 15px;
   align-items: center;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
 .logo-icon {
-  font-size: 45px;
+  font-size: 42px;
 }
 
 .logo h2 {
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .logo p {
-  color: #d4e2ff;
+  color: #dbeafe;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .menu-item {
-  padding: 15px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 14px;
   cursor: pointer;
   transition: .3s;
+  font-size: 17px;
 }
 
 .menu-item:hover {
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.15);
 }
 
 .active {
-  background: #1b74ff;
+  background: rgba(255,255,255,.22);
 }
 
 .logout {
   margin-top: auto;
   padding: 15px;
-  border-radius: 12px;
   border: none;
+  border-radius: 14px;
   cursor: pointer;
-  background: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.15);
   color: white;
+  font-size: 16px;
 }
+
+/* ================= CONTENT ================= */
 
 .content {
   flex: 1;
   padding: 35px;
 }
+
+/* ================= HEADER ================= */
 
 .topbar {
   display: flex;
@@ -85,43 +93,57 @@ body {
 }
 
 .topbar h1 {
-  color: white;
   font-size: 40px;
+  color: #0f172a;
 }
 
-.search {
-  background: white;
+.subtitle {
+  color: gray;
+  margin-top: 8px;
+}
+
+.search-box input {
   width: 320px;
-  padding: 12px 18px;
+  padding: 14px 20px;
   border-radius: 30px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.search input {
   border: none;
   outline: none;
-  width: 100%;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
 }
 
+/* ================= CARDS ================= */
+
 .cards {
-  margin-top: 35px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  gap: 25px;
+  gap: 20px;
 }
 
 .card {
   padding: 28px;
-  border-radius: 18px;
+  border-radius: 20px;
   color: white;
-  box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card span {
+  font-size: 34px;
+}
+
+.card h3 {
+  margin-top: 20px;
 }
 
 .card h2 {
-  margin: 18px 0;
-  font-size: 38px;
+  margin: 15px 0;
+  font-size: 40px;
 }
 
 .blue {
@@ -137,5 +159,97 @@ body {
 }
 
 .red {
-  background: linear-gradient(135deg,#ef4444,#f87171);
+  background: linear-gradient(135deg,#ef4444,#fb7185);
+}
+
+/* ================= ROW ================= */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* ================= PANELS ================= */
+
+.quick-actions,
+.recent-loans,
+.books,
+.charts {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.quick-actions h2,
+.recent-loans h2,
+.books h2,
+.charts h2 {
+  margin-bottom: 20px;
+}
+
+/* ================= BUTTONS ================= */
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+
+.actions button {
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  background: #2563eb;
+  transition: .3s;
+}
+
+.actions button:hover {
+  background: #1d4ed8;
+}
+
+/* ================= TABLES ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  background: #eff6ff;
+  padding: 15px;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.issued {
+  color: green;
+  font-weight: bold;
+}
+
+.returned {
+  color: red;
+  font-weight: bold;
+}
+
+/* ================= CHART PLACEHOLDER ================= */
+
+.chart-placeholder {
+  height: 180px;
+  background: #eff6ff;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  margin-bottom: 20px;
 }
