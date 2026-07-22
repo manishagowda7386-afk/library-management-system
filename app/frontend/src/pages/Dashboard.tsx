@@ -1,4 +1,5 @@
 import DashboardCards from "../components/DashboardCards";
+import QuickActions from "../components/QuickActions";
 
 function Dashboard() {
   return (
@@ -21,6 +22,16 @@ function Dashboard() {
       </header>
 
       <DashboardCards />
+
+      <div className="dashboard-row">
+        <QuickActions />
+
+        <div className="panel">
+          <h2>Recent Loans</h2>
+
+          <p>Recent loans will appear here.</p>
+        </div>
+      </div>
     </>
   );
 }
