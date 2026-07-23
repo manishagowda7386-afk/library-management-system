@@ -1,3 +1,5 @@
+import { Bell, Search } from "lucide-react";
+
 function Topbar() {
   return (
     <header className="topbar">
@@ -9,8 +11,16 @@ function Topbar() {
       </div>
 
       <div className="topbar-right">
+        <div className="search-box">
+          <Search size={18} />
+          <input
+            type="text"
+            placeholder="Search books, members..."
+          />
+        </div>
+
         <div className="notification">
-          🔔
+          <Bell size={24} />
           <span className="notification-badge">3</span>
         </div>
 
