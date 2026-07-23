@@ -6,9 +6,13 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
 } from "recharts";
 
-const data = [
+const monthlyData = [
   { month: "Jan", books: 40 },
   { month: "Feb", books: 65 },
   { month: "Mar", books: 50 },
@@ -17,26 +21,74 @@ const data = [
   { month: "Jun", books: 95 },
 ];
 
+const categoryData = [
+  { name: "Programming", value: 40 },
+  { name: "AI", value: 20 },
+  { name: "Database", value: 15 },
+  { name: "Networking", value: 10 },
+  { name: "Others", value: 15 },
+];
+
+const COLORS = [
+  "#2563eb",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+];
+
 function Charts() {
   return (
     <div className="panel">
       <div className="panel-header">
-        <h2>Books Issued Per Month</h2>
+        <h2>Library Statistics</h2>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
+      <div className="charts-grid">
 
-          <XAxis dataKey="month" />
+        <div>
+          <h3 className="chart-title">Books Issued</h3>
 
-          <YAxis />
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={monthlyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="books" fill="#2563eb" radius={[8,8,0,0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-          <Tooltip />
+        <div>
+          <h3 className="chart-title">Book Categories</h3>
 
-          <Bar dataKey="books" fill="#2563eb" radius={[8, 8, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
+          <ResponsiveContainer width="100%" height={260}>
+            <PieChart>
+              <Pie
+                data={categoryData}
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                dataKey="value"
+                label
+              >
+                {categoryData.map((entry, index) => (
+                  <Cell
+                    key={index}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+
+              <Tooltip />
+
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+      </div>
     </div>
   );
 }

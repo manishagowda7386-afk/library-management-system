@@ -32,3 +32,15 @@ margin-top:20px;
 .recharts-default-tooltip{
 border-radius:12px!important;
 }
+.charts-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.chart-title{
+text-align:center;
+margin-bottom:15px;
+font-size:18px;
+color:#1e293b;
+}
