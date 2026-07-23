@@ -25,3 +25,10 @@ font-size:22px;
 color:#64748b;
 background:#f8fafc;
 }
+.recharts-wrapper{
+margin-top:20px;
+}
+
+.recharts-default-tooltip{
+border-radius:12px!important;
+}
