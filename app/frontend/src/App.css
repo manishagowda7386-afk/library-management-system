@@ -105,3 +105,16 @@ color:#0f172a;
 .profile-card small{
 color:#64748b;
 }
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    }
+
+    .logout{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    }
+}
