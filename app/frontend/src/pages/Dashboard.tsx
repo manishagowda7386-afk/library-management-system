@@ -1,6 +1,7 @@
 import DashboardCards from "../components/DashboardCards";
 import QuickActions from "../components/QuickActions";
 import RecentLoans from "../components/RecentLoans";
+import BooksTable from "../components/BooksTable";
 
 function Dashboard() {
   return (
@@ -26,8 +27,19 @@ function Dashboard() {
 
       <div className="dashboard-row">
         <QuickActions />
-
         <RecentLoans />
+      </div>
+
+      <div className="dashboard-row">
+        <BooksTable />
+
+        <div className="panel">
+          <h2>Library Statistics</h2>
+
+          <div className="chart-placeholder">
+            📊 Charts Coming Next
+          </div>
+        </div>
       </div>
     </>
   );
